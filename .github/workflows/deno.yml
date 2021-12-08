@@ -22,3 +22,18 @@ jobs:
 
       - name: Run tests
         run: deno test -A --unstable
+
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Check Prettier style
+        run: npx prettier -c .
