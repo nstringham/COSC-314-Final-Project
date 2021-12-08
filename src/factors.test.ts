@@ -27,7 +27,7 @@ Deno.test("LCM of 1 and 0", () => {
       lcm(1, 0);
     },
     Error,
-    "can not find the lcm of a non-positive number"
+    "a and b must be positive"
   );
 });
 
@@ -37,7 +37,7 @@ Deno.test("LCM of 0 and 1", () => {
       lcm(0, 1);
     },
     Error,
-    "can not find the lcm of a non-positive number"
+    "a and b must be positive"
   );
 });
 
@@ -47,7 +47,7 @@ Deno.test("LCM of 1 and -1", () => {
       lcm(1, -1);
     },
     Error,
-    "can not find the lcm of a non-positive number"
+    "a and b must be positive"
   );
 });
 
@@ -57,7 +57,7 @@ Deno.test("LCM of 1 and 1.5", () => {
       lcm(1, 1.5);
     },
     Error,
-    "can not find the lcm of a non-integer number"
+    "a and b must be integers"
   );
 });
 
@@ -67,6 +67,6 @@ Deno.test("LCM of 1.5 and 1", () => {
       lcm(1.5, 1);
     },
     Error,
-    "can not find the lcm of a non-integer number"
+    "a and b must be integers"
   );
 });
