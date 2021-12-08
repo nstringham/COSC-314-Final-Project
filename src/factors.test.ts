@@ -1,4 +1,4 @@
-import { assertEquals, assertThrows } from "https://deno.land/std@0.117.0/testing/asserts.ts";
+import { assert, assertEquals, assertThrows } from "https://deno.land/std@0.117.0/testing/asserts.ts";
 
 import { lcm } from "./factors.ts";
 
@@ -21,8 +21,14 @@ Deno.test("LCM of 100 and 600", () => {
   assertEquals(lcm(100, 600), 600, "lcm(100, 600) should be 600");
 });
 
-Deno.test("LCM of 70_000_000 and 50_000_000", () => {
+Deno.test("LCM of 70_000_000 and 50_000_000 (timed)", () => {
+  const start = Date.now();
   assertEquals(lcm(70_000_000, 50_000_000), 350_000_000, "lcm(70_000_000, 50_000_000) should be 350_000_000");
+  const end = Date.now();
+  assert(
+    end - start < 1000,
+    "lcm(70_000_000, 50_000_000) should take less than 1 second but took " + (end - start) + "ms"
+  );
 });
 
 Deno.test("LCM of 1 and 0", () => {
