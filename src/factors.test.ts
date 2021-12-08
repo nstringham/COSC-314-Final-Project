@@ -21,6 +21,10 @@ Deno.test("LCM of 100 and 600", () => {
   assertEquals(lcm(100, 600), 600, "lcm(100, 600) should be 600");
 });
 
+Deno.test("LCM of 70_000_000 and 50_000_000", () => {
+  assertEquals(lcm(70_000_000, 50_000_000), 350_000_000, "lcm(70_000_000, 50_000_000) should be 350_000_000");
+});
+
 Deno.test("LCM of 1 and 0", () => {
   assertThrows(
     () => {
