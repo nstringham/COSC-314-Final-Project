@@ -12,6 +12,14 @@
  * lcm(1, 1.5) // throws an error
  */
 export function lcm(a: number, b: number): number {
+  if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    throw new Error("a and b must be integers");
+  }
+
+  if (a <= 0 || b <= 0) {
+    throw new Error("a and b must be positive");
+  }
+
   for (let i = 1; true; i++) {
     if (i % a === 0 && i % b === 0) {
       return i;
