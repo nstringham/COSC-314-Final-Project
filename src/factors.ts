@@ -12,5 +12,9 @@
  * lcm(1, 1.5) // throws an error
  */
 export function lcm(a: number, b: number): number {
-  throw new Error("Method not implemented."); // TODO
+  for (let i = 1; true; i++) {
+    if (i % a === 0 && i % b === 0) {
+      return i;
+    }
+  }
 }
