@@ -10,7 +10,7 @@ This Repository contains a solution to Computer Projects #7 in Chapter 4 on page
 
 ### Installing Deno
 
-Although it might work with Node this project was designed for Deno. There are a number of was to install Deno which you can read about on [deno.land](https://deno.land/#installation)
+This project requires Deno. [Install Deno](https://deno.land/#installation)
 
 ### Running the Command
 
