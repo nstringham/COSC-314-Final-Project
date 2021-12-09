@@ -42,6 +42,11 @@ Deno.test("many common factors", () => {
   testLcm(1571 * 3671 * 5827, 1571 * 3671 * 4723, 1571 * 3671 * 5827 * 4723);
 });
 
+Deno.test("very large numbers", () => {
+  testLcm(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+  testLcm(Number.MAX_SAFE_INTEGER + 1, Number.MAX_SAFE_INTEGER + 1, Number.MAX_SAFE_INTEGER + 1);
+});
+
 Deno.test("zero", () => {
   assertThrows(
     () => {
