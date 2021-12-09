@@ -7,7 +7,7 @@ function testLcm(a: number, b: number, expected: number) {
   const actual = lcm(a, b);
   const end = Date.now();
   assertEquals(actual, expected, `lcm(${a}, ${b}) should be ${expected} but was ${actual}`);
-  assert(end - start < 1000, `lcm(${a}, ${b}) should take less than 1000ms but took ` + (end - start) + "ms");
+  assert(end - start < 100, `lcm(${a}, ${b}) should take less than 100ms but took ` + (end - start) + "ms");
 }
 
 Deno.test("2 primes", () => {
