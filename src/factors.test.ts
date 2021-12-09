@@ -2,36 +2,47 @@ import { assert, assertEquals, assertThrows } from "https://deno.land/std@0.117.
 
 import { lcm } from "./factors.ts";
 
-Deno.test("LCM of 1 and 1", () => {
-  assertEquals(lcm(1, 1), 1, "lcm(1, 1) should be 1");
-});
-Deno.test("LCM of 1 and 2", () => {
-  assertEquals(lcm(1, 2), 2, "lcm(1, 2) should be 2");
-});
-
-Deno.test("LCM of 2 and 3", () => {
-  assertEquals(lcm(2, 3), 6, "lcm(2, 3) should be 6");
-});
-
-Deno.test("LCM of 10 and 15", () => {
-  assertEquals(lcm(10, 15), 30, "lcm(10, 15) should be 30");
-});
-
-Deno.test("LCM of 100 and 600", () => {
-  assertEquals(lcm(100, 600), 600, "lcm(100, 600) should be 600");
-});
-
-Deno.test("LCM of 70_000_000 and 50_000_000 (timed)", () => {
+function testLcm(a: number, b: number, expected: number) {
   const start = Date.now();
-  assertEquals(lcm(70_000_000, 50_000_000), 350_000_000, "lcm(70_000_000, 50_000_000) should be 350_000_000");
+  const actual = lcm(a, b);
   const end = Date.now();
-  assert(
-    end - start < 1000,
-    "lcm(70_000_000, 50_000_000) should take less than 1 second but took " + (end - start) + "ms"
-  );
+  assertEquals(actual, expected, `lcm(${a}, ${b}) should be ${expected} but was ${actual}`);
+  assert(end - start < 1000, `lcm(${a}, ${b}) should take less than 1000ms but took ` + (end - start) + "ms");
+}
+
+Deno.test("2 primes", () => {
+  testLcm(1, 1, 1);
+  testLcm(1, 2, 2);
+  testLcm(2, 1, 2);
+  testLcm(2, 2, 2);
+  testLcm(7, 3, 21);
+  testLcm(1, 1429, 1429);
+  testLcm(3643, 7039, 3643 * 7039);
 });
 
-Deno.test("LCM of 1 and 0", () => {
+Deno.test("coprime", () => {
+  testLcm(12, 1, 12);
+  testLcm(6, 35, 6 * 35);
+  testLcm(8, 9, 8 * 9);
+  testLcm(7043 * 9, 1279 * 16, 7043 * 9 * 1279 * 16);
+});
+
+Deno.test("one common factor", () => {
+  testLcm(6, 10, 30);
+  testLcm(15, 10, 30);
+  testLcm(12, 15, 60);
+  testLcm(7867 * 4013, 7867 * 5153, 7867 * 4013 * 5153);
+});
+
+Deno.test("many common factors", () => {
+  testLcm(144, 96, 288);
+  testLcm(12, 20, 60);
+  testLcm(100, 600, 600);
+  testLcm(70_000_000, 50_000_000, 350_000_000);
+  testLcm(1571 * 3671 * 5827, 1571 * 3671 * 4723, 1571 * 3671 * 5827 * 4723);
+});
+
+Deno.test("zero", () => {
   assertThrows(
     () => {
       lcm(1, 0);
@@ -39,9 +50,6 @@ Deno.test("LCM of 1 and 0", () => {
     Error,
     "a and b must be positive"
   );
-});
-
-Deno.test("LCM of 0 and 1", () => {
   assertThrows(
     () => {
       lcm(0, 1);
@@ -49,9 +57,16 @@ Deno.test("LCM of 0 and 1", () => {
     Error,
     "a and b must be positive"
   );
+  assertThrows(
+    () => {
+      lcm(0, 18);
+    },
+    Error,
+    "a and b must be positive"
+  );
 });
 
-Deno.test("LCM of 1 and -1", () => {
+Deno.test("negative", () => {
   assertThrows(
     () => {
       lcm(1, -1);
@@ -59,9 +74,23 @@ Deno.test("LCM of 1 and -1", () => {
     Error,
     "a and b must be positive"
   );
+  assertThrows(
+    () => {
+      lcm(1, -1);
+    },
+    Error,
+    "a and b must be positive"
+  );
+  assertThrows(
+    () => {
+      lcm(1, -120);
+    },
+    Error,
+    "a and b must be positive"
+  );
 });
 
-Deno.test("LCM of 1 and 1.5", () => {
+Deno.test("non-integer", () => {
   assertThrows(
     () => {
       lcm(1, 1.5);
@@ -69,12 +98,16 @@ Deno.test("LCM of 1 and 1.5", () => {
     Error,
     "a and b must be integers"
   );
-});
-
-Deno.test("LCM of 1.5 and 1", () => {
   assertThrows(
     () => {
       lcm(1.5, 1);
+    },
+    Error,
+    "a and b must be integers"
+  );
+  assertThrows(
+    () => {
+      lcm(Math.PI, 1);
     },
     Error,
     "a and b must be integers"
