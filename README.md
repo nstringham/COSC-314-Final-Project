@@ -6,6 +6,34 @@ This Repository contains a solution to Computer Projects #7 in Chapter 4 on page
 
 > Given two positive integers, find their least common multiple
 
+## Program Design
+
+### Theory
+
+Traditionally the least common multiple (LCM) of a and b as being a \* b / the greatest common factor (GCF)
+
+### My Algorithm
+
+    P ≔ an infinite sequence of positive integers that includes all of the primes
+
+    proc lcm(a ∈ Z+, b ∈ Z+)
+        g ≔ 1;
+
+        for n of P
+            if n > a ∨ n > b
+                exit for loop
+
+            while a and b are divisible by n
+                g ≔ g × n
+                a ≔ a ÷ n
+                b ≔ b ÷ n
+
+        return a × b × g
+
+### Implementation
+
+you can see my implementation in [/src/factors.ts](./src/factors.ts) along with comments in the style of a proof of correctness.
+
 ## Running the program
 
 ### Installing Deno
