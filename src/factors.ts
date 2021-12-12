@@ -11,16 +11,12 @@
  * lcm(1, -1) // throws an error
  * lcm(1, 1.5) // throws an error
  */
-export function lcm(a: number, b: number): number {
-  if (!Number.isInteger(a) || !Number.isInteger(b)) {
-    throw new Error("a and b must be integers");
-  }
-
+export function lcm(a: bigint, b: bigint): bigint {
   if (a <= 0 || b <= 0) {
     throw new Error("a and b must be positive");
   }
 
-  let gcf = 1;
+  let gcf = 1n;
 
   // for every prime (and also some other numbers)
   for (const n of primeNumbers()) {
@@ -37,7 +33,7 @@ export function lcm(a: number, b: number): number {
       break;
     }
 
-    while (a % n === 0 && b % n === 0) {
+    while (a % n === 0n && b % n === 0n) {
       gcf *= n;
       a /= n;
       b /= n;
@@ -65,12 +61,12 @@ export function lcm(a: number, b: number): number {
  * @example
  * 2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, ...
  */
-function* primeNumbers(): IterableIterator<number> {
+function* primeNumbers(): IterableIterator<bigint> {
   // 2 is the only even prime number
-  yield 2;
+  yield 2n;
 
   // all odd numbers starting at 3
-  for (let n = 3; true; n += 2) {
+  for (let n = 3n; true; n += 2n) {
     yield n;
   }
 }
