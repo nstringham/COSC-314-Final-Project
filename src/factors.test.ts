@@ -2,7 +2,7 @@ import { assert, assertEquals, assertThrows } from "https://deno.land/std@0.117.
 
 import { lcm } from "./factors.ts";
 
-function testLcm(a: number, b: number, expected: number) {
+function testLcm(a: bigint, b: bigint, expected: bigint) {
   const start = Date.now();
   const actual = lcm(a, b);
   const end = Date.now();
@@ -11,63 +11,65 @@ function testLcm(a: number, b: number, expected: number) {
 }
 
 Deno.test("2 primes", () => {
-  testLcm(1, 1, 1);
-  testLcm(1, 2, 2);
-  testLcm(2, 1, 2);
-  testLcm(2, 2, 2);
-  testLcm(7, 3, 21);
-  testLcm(1, 1429, 1429);
-  testLcm(3643, 7039, 3643 * 7039);
+  testLcm(1n, 1n, 1n);
+  testLcm(1n, 2n, 2n);
+  testLcm(2n, 1n, 2n);
+  testLcm(2n, 2n, 2n);
+  testLcm(7n, 3n, 21n);
+  testLcm(1n, 1429n, 1429n);
+  testLcm(3643n, 7039n, 3643n * 7039n);
 });
 
 Deno.test("coprime", () => {
-  testLcm(12, 1, 12);
-  testLcm(6, 35, 6 * 35);
-  testLcm(8, 9, 8 * 9);
-  testLcm(7043 * 9, 1279 * 16, 7043 * 9 * 1279 * 16);
+  testLcm(12n, 1n, 12n);
+  testLcm(6n, 35n, 6n * 35n);
+  testLcm(8n, 9n, 8n * 9n);
+  testLcm(7043n * 9n, 1279n * 16n, 7043n * 9n * 1279n * 16n);
 });
 
 Deno.test("one common factor", () => {
-  testLcm(6, 10, 30);
-  testLcm(15, 10, 30);
-  testLcm(12, 15, 60);
-  testLcm(7867 * 4013, 7867 * 5153, 7867 * 4013 * 5153);
+  testLcm(6n, 10n, 30n);
+  testLcm(15n, 10n, 30n);
+  testLcm(12n, 15n, 60n);
+  testLcm(7867n * 4013n, 7867n * 5153n, 7867n * 4013n * 5153n);
 });
 
 Deno.test("many common factors", () => {
-  testLcm(144, 96, 288);
-  testLcm(12, 20, 60);
-  testLcm(100, 600, 600);
-  testLcm(70_000_000, 50_000_000, 350_000_000);
-  testLcm(1571 * 3671 * 5827, 1571 * 3671 * 4723, 1571 * 3671 * 5827 * 4723);
+  testLcm(144n, 96n, 288n);
+  testLcm(12n, 20n, 60n);
+  testLcm(100n, 600n, 600n);
+  testLcm(70_000_000n, 50_000_000n, 350_000_000n);
+  testLcm(1571n * 3671n * 5827n, 1571n * 3671n * 4723n, 1571n * 3671n * 5827n * 4723n);
 });
 
+const veryBigInt = 1n << 100n;
+
 Deno.test("very large numbers", () => {
-  testLcm(3_000_000_000_000, 5_000_000_000_000, 15_000_000_000_000);
-  testLcm(Number.MAX_SAFE_INTEGER, 1, Number.MAX_SAFE_INTEGER);
-  testLcm(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
-  testLcm(Number.MAX_SAFE_INTEGER + 1, Number.MAX_SAFE_INTEGER + 1, Number.MAX_SAFE_INTEGER + 1);
-  testLcm(Number.MAX_SAFE_INTEGER - 1, Number.MAX_SAFE_INTEGER - 1, Number.MAX_SAFE_INTEGER - 1);
+  testLcm(3_000_000_000_000n, 5_000_000_000_000n, 15_000_000_000_000n);
+  testLcm(veryBigInt, 1n, veryBigInt);
+  testLcm(veryBigInt, veryBigInt, veryBigInt);
+  testLcm(veryBigInt + 1n, veryBigInt + 1n, veryBigInt + 1n);
+  testLcm(veryBigInt - 1n, veryBigInt - 1n, veryBigInt - 1n);
 });
 
 Deno.test("zero", () => {
   assertThrows(
     () => {
-      lcm(1, 0);
+      lcm(1n, 0n);
     },
     Error,
     "a and b must be positive"
   );
   assertThrows(
     () => {
-      lcm(0, 1);
+      lcm(0n, 1n);
     },
     Error,
     "a and b must be positive"
   );
   assertThrows(
     () => {
-      lcm(0, 18);
+      lcm(0n, 18n);
     },
     Error,
     "a and b must be positive"
@@ -77,47 +79,23 @@ Deno.test("zero", () => {
 Deno.test("negative", () => {
   assertThrows(
     () => {
-      lcm(1, -1);
+      lcm(1n, -1n);
     },
     Error,
     "a and b must be positive"
   );
   assertThrows(
     () => {
-      lcm(1, -1);
+      lcm(1n, -1n);
     },
     Error,
     "a and b must be positive"
   );
   assertThrows(
     () => {
-      lcm(1, -120);
+      lcm(1n, -120n);
     },
     Error,
     "a and b must be positive"
-  );
-});
-
-Deno.test("non-integer", () => {
-  assertThrows(
-    () => {
-      lcm(1, 1.5);
-    },
-    Error,
-    "a and b must be integers"
-  );
-  assertThrows(
-    () => {
-      lcm(1.5, 1);
-    },
-    Error,
-    "a and b must be integers"
-  );
-  assertThrows(
-    () => {
-      lcm(Math.PI, 1);
-    },
-    Error,
-    "a and b must be integers"
   );
 });
