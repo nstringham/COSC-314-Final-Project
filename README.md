@@ -52,8 +52,16 @@ deno main.ts
 
 ### Testing the Program
 
+to test the program's correctness run
+
 ```
 deno test
+```
+
+to test the program's speed run
+
+```
+deno run .\src\factors.profile.ts
 ```
 
 ### Code Style
