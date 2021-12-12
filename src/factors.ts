@@ -79,7 +79,7 @@ export function gcf(a: bigint, b: bigint): bigint {
       b = temp;
     }
 
-    // b = |a - b| = max(a, b) - min(a, b)
+    // b := |a - b| = max(a, b) - min(a, b)
     b = b - a;
   } while (b !== 0n);
 
