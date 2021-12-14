@@ -10,25 +10,13 @@ This Repository contains a solution to Computer Projects #7 in Chapter 4 on page
 
 ### Theory
 
-Traditionally the least common multiple (LCM) of a and b as being a \* b / the greatest common factor (GCF)
+The least common multiple (LCM) of a and b as being a \* b / the greatest common factor (GCF)
 
-### My Algorithm
+### Stein's Algorithm
 
-    P ≔ an infinite sequence of positive integers that includes all of the primes
+Stein's algorithm is a fast way to calculate the gfc of 2 integers.
 
-    proc lcm(a ∈ Z+, b ∈ Z+)
-        g ≔ 1;
-
-        for n of P
-            if n > a ∨ n > b
-                exit for loop
-
-            while a and b are divisible by n
-                g ≔ g × n
-                a ≔ a ÷ n
-                b ≔ b ÷ n
-
-        return a × b × g
+see [Stein's algorithm on Wikipedia](https://en.wikipedia.org/wiki/Binary_GCD_algorithm)
 
 ### Implementation
 
