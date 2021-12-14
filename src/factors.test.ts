@@ -140,6 +140,14 @@ Deno.test("many common factors gcf", () => {
   testGcf(1571n * 3671n * 5827n, 1571n * 3671n * 4723n, 1571n * 3671n);
 });
 
+Deno.test("large consecutive fibonacci gcf", () => {
+  // I read somewhere that large consecutive fibonacci numbers are a worst case for Stein’s algorithm
+  testGcf(483162952612010163284885n, 781774079430987230203437n, 1n);
+  testGcf(30960598847965113057878492344n, 50095301248058391139327916261n, 1n);
+  testGcf(8404037832974134882743767626780173n, 13598018856492162040239554477268290n, 1n);
+  testGcf(29090180355503362256910111038089984964854261893n, 47068900554068939361891195233676009091941690850n, 1n);
+});
+
 Deno.test("very large numbers gcf", () => {
   testGcf(3_000_000_000_000n, 5_000_000_000_000n, 1_000_000_000_000n);
   testGcf(veryBigInt, 1n, 1n);
