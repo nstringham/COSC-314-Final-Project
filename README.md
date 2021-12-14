@@ -24,7 +24,7 @@ you can see my implementation in [/src/factors.ts](./src/factors.ts) along with 
 
 ## Prevois Version
 
-I orignally made my own algorithm before realizing that Stein's algorithm was much faster. You can see my orional algoritm and it's implementation along with some proof of correctness style comments in the [Nate's-original-algorithm](https://github.com/nstringham/COSC-314-Final-Project/tree/Nate's-original-algorithm) branch of this repo.
+I orignally made my own algorithm before discovering Stein's algorithm and realizing it was much faster. You can see my orional algoritm and it's implementation along with some proof of correctness style comments in the [Nate's-original-algorithm](https://github.com/nstringham/COSC-314-Final-Project/tree/Nate's-original-algorithm) branch of this repo.
 
 ## Running the Program
 
