@@ -34,7 +34,7 @@ Traditionally the least common multiple (LCM) of a and b as being a \* b / the g
 
 you can see my implementation in [/src/factors.ts](./src/factors.ts) along with comments in the style of a proof of correctness.
 
-## Running the program
+## Running the Program
 
 ### Installing Deno
 
