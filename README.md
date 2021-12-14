@@ -22,6 +22,13 @@ see [Stein's algorithm on Wikipedia](https://en.wikipedia.org/wiki/Binary_GCD_al
 
 you can see my implementation in [/src/factors.ts](./src/factors.ts) along with comments in the style of a proof of correctness.
 
+### Specification
+this program uses bigint so it works with arbitrarilly large numbers
+
+- a ∈ \(0, ∞\)
+- b ∈ \(0, ∞\)
+- lcm(a, b) ∈ \[max(a, b), a×b\]
+
 ## Prevois Version
 
 I orignally made my own algorithm before discovering Stein's algorithm and realizing it was much faster. You can see my orional algoritm and it's implementation along with some proof of correctness style comments in the [Nate's-original-algorithm](https://github.com/nstringham/COSC-314-Final-Project/tree/Nate's-original-algorithm) branch of this repo.
