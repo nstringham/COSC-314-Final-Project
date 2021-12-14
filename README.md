@@ -23,6 +23,7 @@ see [Stein's algorithm on Wikipedia](https://en.wikipedia.org/wiki/Binary_GCD_al
 you can see my implementation in [/src/factors.ts](./src/factors.ts) along with comments in the style of a proof of correctness.
 
 ### Specification
+
 this program uses bigint so it works with arbitrarilly large numbers
 
 - a ∈ \(0, ∞\)
