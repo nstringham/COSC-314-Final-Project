@@ -22,6 +22,10 @@ see [Stein's algorithm on Wikipedia](https://en.wikipedia.org/wiki/Binary_GCD_al
 
 you can see my implementation in [/src/factors.ts](./src/factors.ts) along with comments in the style of a proof of correctness.
 
+## Prevois Version
+
+I orignally made my own algorithm before realizing that Stein's algorithm was much faster. You can see my orional algoritm and it's implementation along with some proof of correctness style comments in the [Nate's-original-algorithm](https://github.com/nstringham/COSC-314-Final-Project/tree/Nate's-original-algorithm) branch of this repo.
+
 ## Running the program
 
 ### Installing Deno
